@@ -14,17 +14,14 @@ const root = createRoot(domNode);
 
 const App = () => {
 	const [articleState, setArticleState] = useState(defaultArticleState);
-	const [formState, setFormState] = useState(defaultArticleState);
 
 	const resetFormState = () => {
-		setFormState(defaultArticleState);
 		setArticleState(defaultArticleState);
 	};
 
-	const applyState = () => {
+	const applyState = (formState: typeof defaultArticleState) => {
 		setArticleState(formState);
 	};
-
 	return (
 		<main
 			className={clsx(styles.main)}
@@ -37,7 +34,7 @@ const App = () => {
 					'--bg-color': articleState.backgroundColor.value,
 				} as CSSProperties
 			}>
-			<ArticleParamsForm state={formState} setState={setFormState} resetStyles={resetFormState} applyStyles={applyState} />
+			<ArticleParamsForm resetStyles={resetFormState} applyStyles={applyState}/>
 			<Article />
 		</main>
 	);
